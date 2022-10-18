@@ -4,26 +4,26 @@ import com.google.gson.annotations.SerializedName;
 
 public class Model
 {
-    @SerializedName( "name" ) private String companyName;
+    @SerializedName( "type" ) private String pikminType;
 
-    @SerializedName( "year" ) private Integer releaseYear;
+    @SerializedName( "game" ) private String releaseGame;
 
-    @SerializedName( "recentConsole" ) private String recentConsole;
+    @SerializedName( "description" ) private String description;
 
 
-    public Model( final String name, final Integer year, final String latestConsole )
+    public Model( final String type, final String game, final String description )
     {
-        this.companyName = name;
-        this.releaseYear = year;
-        this.recentConsole = latestConsole;
+        this.pikminType = type;
+        this.releaseGame = game;
+        this.description = description;
     }
 
 
-    public String getName() { return companyName; }
-    public Integer getYear() { return releaseYear; }
-    public String getRecentConsole() { return recentConsole; }
+    public String getType() { return pikminType; }
+    public String getGame() { return releaseGame; }
+    public String getDescription() { return description; }
 
-    public  void setName( final String name ) { this.companyName = name; }
-    public  void setYear( final Integer year ) { this.releaseYear = year; }
-    public void SetRecentConsole( final String recentConsole ) { this.recentConsole = recentConsole; }
+    public void setType( final String name ) { this.pikminType = name; }
+    public void setYear( final String game ) { this.releaseGame = game; }
+    public void SetDescription( final String description ) { this.description = description; }
 }

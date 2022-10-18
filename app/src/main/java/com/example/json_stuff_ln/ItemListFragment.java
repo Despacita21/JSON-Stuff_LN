@@ -124,14 +124,14 @@ public class ItemListFragment extends Fragment {
         {
             holder.modelItem = mValues.get( position );
 
-            holder.mIdView.setText(mValues.get(position).getName());
-            holder.mContentView.setText(mValues.get(position).getYear().toString());
+            holder.mIdView.setText(mValues.get(position).getType());
+            holder.mContentView.setText(mValues.get(position).getGame().toString());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(itemView ->
             {
                 Bundle arguments = new Bundle();
-                arguments.putString(ItemDetailFragment.ARG_ITEM_ID, mValues.get(position).getName());
+                arguments.putString(ItemDetailFragment.ARG_ITEM_ID, mValues.get(position).getType());
 
                 if (mItemDetailFragmentContainer != null)
                 {
@@ -156,7 +156,7 @@ public class ItemListFragment extends Fragment {
                     return true;
                 });
             }
-            holder.itemView.setOnLongClickListener(v -> {ClipData.Item clipItem = new ClipData.Item(mValues.get(position).getName());
+            holder.itemView.setOnLongClickListener(v -> {ClipData.Item clipItem = new ClipData.Item(mValues.get(position).getType());
                 ClipData dragData = new ClipData(((PlaceholderContent.PlaceholderItem) v.getTag()).content, new String[]{ClipDescription.MIMETYPE_TEXT_PLAIN}, clipItem);
 
                 if (Build.VERSION.SDK_INT >= 24)

@@ -38,20 +38,20 @@ public class ModelContent
                 try
                 {
                     JSONObject object = response.getJSONObject( "record" );
-                    JSONArray jsonArray = object.getJSONArray("gameCompanies" );
+                    JSONArray jsonArray = object.getJSONArray("Pikmin" );
                     MODELS.clear();
                     MODELS_MAP.clear();
 
                     for( int i = 0; i < jsonArray.length(); i++ )
                     {
-                        JSONObject gameCompany = jsonArray.getJSONObject(i);
-                        String name = gameCompany.getString("name");
-                        Integer year = gameCompany.getInt("year");
-                        String recentConsole = gameCompany.getString("recentConsole" );
-                        Model model = new Model( name, year, recentConsole );
+                        JSONObject Pikmin = jsonArray.getJSONObject(i);
+                        String type = Pikmin.getString("Type");
+                        String game = Pikmin.getString("Game");
+                        String description = Pikmin.getString("Description" );
+                        Model model = new Model( type, game, description );
 
                         MODELS.add( model );
-                        MODELS_MAP.put( name, model );
+                        MODELS_MAP.put( type, model );
                     }
 
                     if( !BUILT )

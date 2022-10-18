@@ -28,8 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  * in two-pane mode (on larger screen devices) or self-contained
  * on handsets.
  */
-public class ItemDetailFragment extends Fragment
-{
+public class ItemDetailFragment extends Fragment {
 
     /**
      * The fragment argument representing the item ID that this fragment
@@ -46,8 +45,7 @@ public class ItemDetailFragment extends Fragment
 
     private final View.OnDragListener dragListener = (v, event) ->
     {
-        if (event.getAction() == DragEvent.ACTION_DROP)
-        {
+        if (event.getAction() == DragEvent.ACTION_DROP) {
             ClipData.Item clipDataItem = event.getClipData().getItemAt(0);
             mItem = ModelContent.MODELS_MAP.get(clipDataItem.getText().toString());
             updateContent();
@@ -60,20 +58,17 @@ public class ItemDetailFragment extends Fragment
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ItemDetailFragment()
-    {
+    public ItemDetailFragment() {
 
     }
 
     private FloatingActionButton testingFab;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID))
-        {
+        if (getArguments().containsKey(ARG_ITEM_ID)) {
             // Load the placeholder content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
@@ -82,8 +77,7 @@ public class ItemDetailFragment extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentItemDetailBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
@@ -101,38 +95,30 @@ public class ItemDetailFragment extends Fragment
     }
 
     @Override
-    public void onDestroyView()
-    {
+    public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
 
-    private void updateContent()
-    {
-        if (mItem != null)
-        {
-            mTextView.setText(mItem.getRecentConsole());
-            if (mToolbarLayout != null)
-            {
-                mToolbarLayout.setTitle(mItem.getName());
+    private void updateContent() {
+        if (mItem != null) {
+            mTextView.setText(mItem.getDescription());
+            if (mToolbarLayout != null) {
+                mToolbarLayout.setTitle(mItem.getType());
             }
         }
 
-        if (testingFab != null)
-        {
-            testingFab.setOnClickListener(new View.OnClickListener()
-            {
+        if (testingFab != null) {
+            testingFab.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view)
-                {
+                public void onClick(View view) {
                     testAllThatJazz();
                 }
             });
         }
     }
 
-    private void testAllThatJazz()
-    {
+    private void testAllThatJazz() {
         String url = "https://api.jsonbin.io/v3/b/5f726a107243cd7e8245d58b";  // THAT should be in a strings.xml file!
 
         // Instantiate the RequestQueue.
@@ -144,7 +130,7 @@ public class ItemDetailFragment extends Fragment
                     @Override
                     public void onResponse(String response) {
                         // Display the response string in our convenient existing text view
-                        mTextView.setText("Response is: "+ response);
+                        mTextView.setText("Response is: " + response);
                         // NEXT, we need to use GSON to turn that JSON into a model
                     }
                 }, new Response.ErrorListener() {
